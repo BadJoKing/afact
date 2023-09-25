@@ -1,21 +1,23 @@
-
 use std::env;
 use num::integer::div_floor;
+use std::num::ParseIntError;
+use std::result::Result;
 fn main() {
     let args: Vec<String> = env::args().collect();
-    afact(args[1].parse().expect("That's not a number and you know it!"), true, true);
+    let num_res: Result<u128,ParseIntError> = args[1].parse();
+    let num_val = match num_res{
+        Ok(x) => x,
+        Err(error) => panic!("Yeah, I can't seem to find any valid number there. Might wanna check if you entered the right thing. Oh and here's the error message: \n\n{error}"),
+    };
+    afact(num_val, true, true);
 }
 
-fn afact(x: i128, deb_tog: bool, rec_tog: bool) -> i128{
-    let mut tmp: i128 = x;
-    let mut i: i64 = 1;
+fn afact(x: u128, deb_tog: bool, rec_tog: bool) -> i128{
+    let mut tmp: u128 = x;
+    let mut i: u64 = 1;
     loop{
 
         let g: f64 = (tmp) as f64;
-        if tmp < 0{
-
-            return -2;
-        }
         if i != 0{
             tmp = div_floor(tmp,i.into());
             let gidiv: f64 = g/(i)as f64;
@@ -27,10 +29,10 @@ fn afact(x: i128, deb_tog: bool, rec_tog: bool) -> i128{
                 }
                 if rec_tog == true{
                     let mut v:[i128; 2]  = [-3,-3];
-                    let mut j: i128 = 1;
+                    let mut j: u128 = 1;
                     loop{
-                        let minu:i128 = x-j;
-                        let plu:i128  = x+j;
+                        let minu:u128 = x-j;
+                        let plu:u128  = x+j;
 
                         let c: i128 = afact(minu, false, false);
                         let b: i128 = afact(plu, false, false);
