@@ -1,7 +1,16 @@
 import sys
 
+args = sys.argv
+rec_tog=False
 
-num = int(sys.argv[1]) #uses sys.argv to be able to use afact as a console command
+for i in range(len(args)-1):
+     if "-" in args[i+1]:
+        if "r" in args[i+1]:
+            rec_tog=True
+     else:
+        indexofnum=i+1
+
+num = int(args[indexofnum]) #uses sys.argv to be able to use afact as a console command
 
 
 #Checks whether the input is actually an integer
@@ -90,4 +99,4 @@ def afact(x, deb_tog, rec_tog):
                         return i
                     break
         i+=1
-afact(num,True,True)
+afact(num,True,rec_tog)
