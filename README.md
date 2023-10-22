@@ -17,11 +17,11 @@ After some time there should be a dist folder in said directory where the execut
 ...you'll obviously need ![rust](https://www.rust-lang.org/tools/install) installed.
 Open a terminal window in the afact-rust folder and type the following:
 ```
-cargo build
+cargo build --release
 ```
 The output should look something like this:
 ```
-username@example-os:path/to/afact-rust$ cargo build
+username@example-os:path/to/afact-rust$ cargo build --release
     Updating crates.io index      |These three are only there 
   Downloaded stuff                |when building for
    Compiling stuff                |the first time
